@@ -1,0 +1,23 @@
+@property --primary-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #ffbc0d;
+}
+
+@property --hover-primary-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: rgb(242, 173, 0);
+}
+
+@property --secondary-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: white;
+}
+
+@property --bg-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #f5f5f5;
+}

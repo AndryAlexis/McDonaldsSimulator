@@ -1,0 +1,52 @@
+#primary-header {
+    background-color: var(--secondary-color);
+    font-size: 1.6rem;
+    box-shadow: 0 5px 5px rgba(164, 164, 164, 0.1);
+    
+    &>div > *, 
+    &>div,
+    &>div > nav > ul {
+        display: flex;
+        align-items: center;
+    }
+
+    &>div {
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+    &>div,
+    &>div > nav > ul {
+        gap: 2rem;
+    }
+
+    figure {
+        width: 50px;
+        max-width: 100px;
+
+        img {
+            width: inherit;
+            height: auto;
+        }
+    }
+
+    nav ul li {
+        cursor: pointer;
+    }
+
+    nav i {
+        color: var(--primary-color);
+        transition-property: color;
+        transition-duration: 300ms;
+        transition-timing-function: ease;
+
+        &:hover {
+            color: var(--hover-primary-color);
+        }
+    }
+
+    nav:last-child i {
+        font-size: 2rem;
+    }
+
+}

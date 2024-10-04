@@ -5,21 +5,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="./css/index.css">
+
+    <script src="./js/data/data.js"></script>
 </head>
 
 <body>
-    <header>
-
+    <header id="primary-header" class="custom-grid">
+        <div>
+            <a href="./">
+                <figure>
+                    <img src="./img/mc-donalds-logo.webp" alt="McDonalds Logo" width="50" height="44"
+                        title="McDonalds Logo">
+                </figure>
+            </a>
+            <nav class="pages-nav">
+                <ul>
+                    <li>Inicio</li>
+                    <li>Plantas</li>
+                    <li>Blog</li>
+                    <li>Contacto</li>
+                </ul>
+            </nav>
+            <nav class="icons-nav">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-
+    <main class="custom-grid">
+        <div class="products">
+        </div>
     </main>
-    <footer>
-
+    <footer id="primary-footer">
+        <p>
+            Todos los derechos reservados.
+        </p>
     </footer>
-
-    <script src="./js/index.js"></script>
+    <script src="./js/andry.js"></script>
 </body>
 
 </html>
