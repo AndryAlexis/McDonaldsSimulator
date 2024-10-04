@@ -6,7 +6,7 @@ const products = [
   { id: 5, name: "Chicken McNuggets", image: "chicken-mc-nuggets.webp", description: "10 pieces of crispy chicken nuggets served with dipping sauces.", price: 6, stock: 40 },
   { id: 6, name: "French Fries", image: "french-fries.webp", description: "Golden, crispy McDonald's French Fries.", price: 2, stock: 60 },
   { id: 7, name: "McFlurry with Oreo", image: "mc-flurry-with-oreo.webp", description: "Soft serve mixed with Oreo cookie pieces.", price: 3, stock: 25 },
-  { id: 8, name: "Egg McMuffin", image: "egg-mc-Muffin.webp", description: "A breakfast sandwich with egg, cheese, and Canadian bacon on an English muffin.", price: 3, stock: 20 },
+  { id: 8, name: "Egg McMuffin", image: "egg-mc-muffin.webp", description: "A breakfast sandwich with egg, cheese, and Canadian bacon on an English muffin.", price: 3, stock: 20 },
   { id: 9, name: "Sausage McMuffin with Egg", image: "sausage-mc-muffin-with-egg.webp", description: "A sausage patty, egg, and cheese on an English muffin.", price: 4, stock: 22 },
   { id: 10, name: "Bacon, Egg & Cheese Biscuit", image: "biscuit.jpg", description: "A biscuit sandwich with bacon, egg, and cheese.", price: 4, stock: 18 },
   { id: 11, name: "Apple Pie", image: "apple-pie.webp", description: "A warm and crispy apple pie.", price: 2, stock: 50 },
