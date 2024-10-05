@@ -17,7 +17,7 @@ const createProductElement = (data) => {
     const figure = document.createElement('figure')
 
     const divImgContainer = document.createElement('div')
-    const img = createImgElement(`../img/${data.image}`, data.description)
+    const img = createImgElement(`./img/${data.image}`, data.description)
 
     divImgContainer.appendChild(img)
 
