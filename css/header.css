@@ -33,11 +33,11 @@
             color: var(--hover-primary-color);
         }
     }
-    
+
     &>div,
-    &>div nav > ul,
-    &>div > .navs-container,
-    &>div > .navs-container > div {
+    &>div nav>ul,
+    &>div>.navs-container,
+    &>div>.navs-container>div {
         display: flex;
         align-items: center;
     }
@@ -48,12 +48,12 @@
     }
 
     &>div,
-    &>div nav > ul,
-    &>div .navs-container > div {
+    &>div nav>ul,
+    &>div .navs-container>div {
         gap: 2rem;
     }
 
-    &>div > label {
+    &>div>label {
         display: none;
         font-size: 3rem;
     }
@@ -61,11 +61,12 @@
     &>div .pages-nav {
         margin: 0 auto;
     }
+
     &>div .navs-container {
         width: 100%;
     }
 
-    &>div .navs-container > div {
+    &>div .navs-container>div {
         width: 100%;
         justify-content: center;
     }
@@ -76,21 +77,21 @@
 
     input#toggle-shopping-car-menu {
 
-        &:not(:checked) + div #shopping-menu {
+        &:not(:checked)+div #shopping-menu {
             pointer-events: none;
-            
-            &> div {
+
+            &>div {
                 box-shadow: none;
             }
         }
 
-        &:checked + div #shopping-menu > div {
+        &:checked+div #shopping-menu>div {
             translate: 0;
         }
     }
 
     #shopping-menu {
-        --_shoppingMenu-padding: 10px;  
+        --_shoppingMenu-padding: 10px;
         container-type: inline-size;
         container-name: shopping-menu;
         width: clamp(200px, 100%, 500px);
@@ -160,7 +161,7 @@
             overflow-y: auto;
         }
 
-        #selected-products > div {
+        #selected-products>.cart-product {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -173,21 +174,24 @@
                 border: solid rgba(0, 0, 0, 0.1);
                 border-width: 1px 0 1px 0;
             }
+
+            & div {
+                flex-shrink: 0;
+            }
         }
 
         &>div>p {
             margin: 16px 0;
             font-weight: bold;
-
         }
 
-        &>div > .icons-nav {
+        &>div>.icons-nav {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
 
-        &>div > div:last-child {
+        &>div>div:last-child {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
@@ -204,11 +208,12 @@
     }
 }
 
-@media (width <= 640px) {
+
+@media (width <=640px) {
     #primary-header {
         z-index: 999;
 
-        &>div input#toggle-main-menus + .navs-container {
+        &>div input#toggle-main-menus+.navs-container {
             position: absolute;
             display: flex;
             flex-direction: column;
@@ -219,16 +224,16 @@
             width: fit-content;
         }
 
-        & > div > label {
+        &>div>label {
             display: grid;
         }
 
-        &>div > .navs-container {
+        &>div>.navs-container {
             /* overflow: hidden; */
             contain: paint;
         }
 
-        &>div > .navs-container > div {
+        &>div>.navs-container>div {
             --_navs-container-padding: 16px;
             flex-direction: column;
             align-items: flex-end;
@@ -243,24 +248,25 @@
             transition-duration: 300ms;
             transition-duration: translate;
             transition-timing-function: ease;
-}
+        }
 
-        &>div > .navs-container .pages-nav ul {
+        &>div>.navs-container .pages-nav ul {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             justify-content: flex-end;
         }
 
-        & > div .pages-nav {
+        &>div .pages-nav {
             margin: 0;
         }
 
         input#toggle-main-menus {
 
-            &:not(:checked) + .navs-container {
+            &:not(:checked)+.navs-container {
                 pointer-events: none;
-                &> div {
+
+                &>div {
                     translate: calc(100% + var(--_navs-container-padding));
                 }
             }
@@ -273,8 +279,8 @@
     }
 }
 
-@container shopping-menu (width <= 405px) {
-    #primary-header #selected-products > div {
+@container shopping-menu (width <=405px) {
+    #primary-header #selected-products>.cart-product {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
