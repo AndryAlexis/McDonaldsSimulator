@@ -1,0 +1,292 @@
+#primary-header {
+    background-color: var(--secondary-color);
+    font-size: 1.6rem;
+    box-shadow: 0 5px 5px rgba(164, 164, 164, 0.1);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 1;
+
+    figure {
+        width: 50px;
+        max-width: 100px;
+
+        img {
+            width: inherit;
+            height: auto;
+        }
+    }
+
+    a {
+        color: black;
+    }
+
+    i {
+        color: var(--primary-color);
+        transition-property: color;
+        transition-duration: 300ms;
+        transition-timing-function: ease;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--hover-primary-color);
+        }
+    }
+    
+    &>div,
+    &>div nav > ul,
+    &>div > .navs-container,
+    &>div > .navs-container > div {
+        display: flex;
+        align-items: center;
+    }
+
+    &>div {
+        justify-content: space-between;
+        padding: 10px 0;
+    }
+
+    &>div,
+    &>div nav > ul,
+    &>div .navs-container > div {
+        gap: 2rem;
+    }
+
+    &>div > label {
+        display: none;
+        font-size: 3rem;
+    }
+
+    &>div .pages-nav {
+        margin: 0 auto;
+    }
+    &>div .navs-container {
+        width: 100%;
+    }
+
+    &>div .navs-container > div {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .icons-nav i {
+        font-size: 2rem;
+    }
+
+    input#toggle-shopping-car-menu {
+
+        &:not(:checked) + div #shopping-menu {
+            pointer-events: none;
+            
+            &> div {
+                box-shadow: none;
+            }
+        }
+
+        &:checked + div #shopping-menu > div {
+            translate: 0;
+        }
+    }
+
+    #shopping-menu {
+        --_shoppingMenu-padding: 10px;  
+        container-type: inline-size;
+        container-name: shopping-menu;
+        width: clamp(200px, 100%, 500px);
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        overflow-x: clip;
+        overflow-y: visible;
+        padding: var(--_shoppingMenu-padding);
+
+        button {
+            background-color: var(--primary-color);
+            border: 0;
+            border-radius: 16px;
+            -webkit-border-radius: 16px;
+            -moz-border-radius: 16px;
+            -ms-border-radius: 16px;
+            -o-border-radius: 16px;
+
+            padding: 8px 16px;
+            cursor: pointer;
+            color: var(--secondary-color);
+            font-weight: bold;
+
+            &:hover {
+                background-color: var(--hover-primary-color);
+            }
+        }
+
+        h2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            i {
+                font-size: 3rem;
+            }
+        }
+
+        &>div {
+            --_margin-left: 16px;
+            display: grid;
+            gap: 8px;
+            border-radius: 16px;
+            -webkit-border-radius: 16px;
+            -moz-border-radius: 16px;
+            -ms-border-radius: 16px;
+            -o-border-radius: 16px;
+
+            padding: 16px;
+            background-color: var(--secondary-color);
+
+            transition-property: translate;
+            transition-duration: 300ms;
+            transition-timing-function: ease;
+
+            translate: calc(-100% - var(--_shoppingMenu-padding));
+            box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
+
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        #selected-products {
+            max-height: 40dvh;
+            overflow-y: auto;
+        }
+
+        #selected-products > div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+
+            &:not(:empty) {
+                padding: 10px 0;
+                margin: 8px 0;
+
+                border: solid rgba(0, 0, 0, 0.1);
+                border-width: 1px 0 1px 0;
+            }
+        }
+
+        &>div>p {
+            margin: 16px 0;
+            font-weight: bold;
+
+        }
+
+        &>div > .icons-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        &>div > div:last-child {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            button:first-child {
+                flex: 1;
+                flex-basis: 170px;
+            }
+
+            button:last-child {
+                flex: 999;
+            }
+        }
+    }
+}
+
+@media (width <= 640px) {
+    #primary-header {
+        z-index: 999;
+
+        &>div input#toggle-main-menus + .navs-container {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            top: 100%;
+            right: 0;
+            padding: 10px;
+
+            width: fit-content;
+        }
+
+        & > div > label {
+            display: grid;
+        }
+
+        &>div > .navs-container {
+            /* overflow: hidden; */
+            contain: paint;
+        }
+
+        &>div > .navs-container > div {
+            --_navs-container-padding: 16px;
+            flex-direction: column;
+            align-items: flex-end;
+            padding: var(--_navs-container-padding);
+            background-color: var(--secondary-color);
+            box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            -webkit-border-radius: 16px;
+            -moz-border-radius: 16px;
+            -ms-border-radius: 16px;
+            -o-border-radius: 16px;
+            transition-duration: 300ms;
+            transition-duration: translate;
+            transition-timing-function: ease;
+}
+
+        &>div > .navs-container .pages-nav ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+
+        & > div .pages-nav {
+            margin: 0;
+        }
+
+        input#toggle-main-menus {
+
+            &:not(:checked) + .navs-container {
+                pointer-events: none;
+                &> div {
+                    translate: calc(100% + var(--_navs-container-padding));
+                }
+            }
+
+            /* &:checked + .navs-container {
+                background-color: red;
+            } */
+        }
+
+    }
+}
+
+@container shopping-menu (width <= 405px) {
+    #primary-header #selected-products > div {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        &>div {
+            width: 100%;
+            display: flex;
+            gap: 8px;
+
+            button:first-child {
+                flex: 1;
+            }
+        }
+    }
+}
