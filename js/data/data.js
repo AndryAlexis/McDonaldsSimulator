@@ -8,7 +8,7 @@ const products = [
   { id: 7, name: "McFlurry with Oreo", image: "mc-flurry-with-oreo.webp", description: "Soft serve mixed with Oreo cookie pieces.", price: 3, stock: 25 },
   { id: 8, name: "Egg McMuffin", image: "egg-mc-muffin.webp", description: "A breakfast sandwich with egg, cheese, and Canadian bacon on an English muffin.", price: 3, stock: 20 },
   { id: 9, name: "Sausage McMuffin with Egg", image: "sausage-mc-muffin-with-egg.webp", description: "A sausage patty, egg, and cheese on an English muffin.", price: 4, stock: 22 },
-  { id: 10, name: "Bacon, Egg & Cheese Biscuit", image: "biscuit.jpg", description: "A biscuit sandwich with bacon, egg, and cheese.", price: 4, stock: 18 },
+  { id: 10, name: "Bacon, Egg & Cheese Biscuit", image: "bacon-egg-and-cheese-biscuit.webp", description: "A biscuit sandwich with bacon, egg, and cheese.", price: 4, stock: 18 },
   { id: 11, name: "Apple Pie", image: "apple-pie.webp", description: "A warm and crispy apple pie.", price: 2, stock: 50 },
   { id: 12, name: "McDouble", image: "mc-double.webp", description: "A double cheeseburger with pickles, onions, ketchup, and mustard.", price: 3, stock: 35 },
   { id: 13, name: "Double Quarter Pounder with Cheese", image: "double-quarter-pounder-with-cheese.webp", description: "A double beef patty burger with cheese, pickles, onions, and ketchup.", price: 7, stock: 12 },

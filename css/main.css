@@ -1,0 +1,96 @@
+main {
+    &>.products {
+        --_min-width: 250px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(var(--_min-width), 1fr));
+        gap: 16px;
+
+        .product {
+            padding: 16px;
+            border-radius: 16px;
+            -webkit-border-radius: 16px;
+            -moz-border-radius: 16px;
+            -ms-border-radius: 16px;
+            -o-border-radius: 16px;
+            background-color: white;
+            box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+
+            transition-duration: 300ms;
+            transition-property: scale;
+        }
+
+        .product:hover {
+            scale: 1.04;
+        }
+
+        .product > figure {
+            display: grid;
+            gap: 16px;
+        }
+
+        .product > figure h2 {
+            font-size: 1.8rem;
+        }
+
+        .product > figure figcaption {
+            font-size: 1.3rem;
+        }
+
+        .product > figure > div {
+            width: inherit;
+            margin: 0 auto;
+
+            height: 222px;
+            max-height: 222px;
+
+            display: grid;
+            place-content: center;
+
+            img {
+                width: 100%;
+                height: auto;
+                max-height: 222px;
+            }
+        }
+
+        .product > div {
+            display: grid;
+            gap: 16px;
+        }
+
+        .product > div ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: space-around;
+            font-size: 1.4rem;
+        }
+
+        .product button {
+            padding: 10px 16px;
+            font-size: 1.4rem;
+            border: 0;
+            border-radius: 16px;
+            -webkit-border-radius: 16px;
+            -moz-border-radius: 16px;
+            -ms-border-radius: 16px;
+            -o-border-radius: 16px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            font-weight: bold;
+            transition-property: background-color;
+            transition-duration: 300ms;
+            transition-timing-function: ease;
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--hover-primary-color);
+            }
+        }
+    }
+}
