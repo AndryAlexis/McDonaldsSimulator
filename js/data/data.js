@@ -1,4 +1,4 @@
-const products = [
+export const products = [
   { id: 1, name: "Big Mac", image: "big-mac.webp", description: "A double-decker burger with lettuce, cheese, pickles, onions, and special sauce.", price: 5, stock: 20 },
   { id: 2, name: "McChicken", image: "mc-chicken.webp", description: "A chicken sandwich with lettuce and mayonnaise.", price: 3, stock: 25 },
   { id: 3, name: "Quarter Pounder with Cheese", image: "quarter-pounder-with-cheese.webp", description: "A juicy beef patty topped with cheese, pickles, onions, and ketchup.", price: 6, stock: 15 },
