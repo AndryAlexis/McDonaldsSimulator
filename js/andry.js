@@ -13,6 +13,7 @@ const createImgElement = (src, alt) => {
 const createProductElement = (data) => {
     const article = document.createElement('article')
     article.classList.add('product')
+    article.setAttribute('data-id', data.id)
 
     const figure = document.createElement('figure')
 
