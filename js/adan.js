@@ -3,16 +3,16 @@ const cartMenu = document.querySelector('#shopping-menu')
 const cartTotal = cartMenu.querySelector('.total')
 let total = 0;
 
-cartMenu.querySelector('.empty').addEventListener('click', () => {
+cartMenu.querySelector('button.empty').addEventListener('click', () => {
     cartMenu.querySelectorAll('.cart-product').forEach(cartProduct => cartProduct.remove())
     total = 0;
     cartTotal.textContent = `Total: ${total}€`
 })
-cartMenu.querySelector('.buy').addEventListener('click', () => {
+cartMenu.querySelector('button.buy').addEventListener('click', () => {
     const cartProducts = cartMenu.querySelectorAll('.cart-product')
 
     if (cartProducts.length) {
-        alert("Compra realizada con éxito. !Gracias por tu compra!")
+        alert("Compra realizada con éxito. ¡Gracias por tu compra!")
         cartProducts.forEach(cartProduct => cartProduct.remove())
         total = 0;
         cartTotal.textContent = `Total: ${total}€`
@@ -32,13 +32,13 @@ for (let button of addToCartButtons) {
 
     button.addEventListener('click', () => {
 
-        // Find cartProduct, if not found cartProduct = undef
+        // Find cartProduct in cartMenu, if not found cartProduct = undef
         const cartProducts = cartMenu.querySelectorAll('.cart-product')
         let cartProduct = Array.from(cartProducts)
             .find(cartProduct => cartProduct.dataset.id == product.id)
 
         if (cartProduct) {
-            // Increase quantity and total 
+            // If found increase quantity and total 
             quantity = parseInt(cartProduct.querySelector('.quantity').textContent)
             if (quantity < product.stock) {
                 cartProduct.querySelector('.quantity').textContent = `${++quantity}`
