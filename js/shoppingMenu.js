@@ -107,6 +107,7 @@ const createNewCartProductElement = (product) => {
 
     // Add event listeners for delete, plus, and minus buttons
     cartProduct.querySelector('button.delete').addEventListener('click', () => {
+        let quantity = parseInt(cartProduct.querySelector('.quantity').textContent);
         cartProduct.remove()
         cartTotal.textContent = `Total: ${total -= product.price * quantity}€`;
     })
