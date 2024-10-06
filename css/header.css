@@ -161,11 +161,7 @@
             overflow-y: auto;
         }
 
-<<<<<<< HEAD
         #selected-products>.cart-product {
-=======
-        #selected-products > li {
->>>>>>> 53ad2daa736adbc6b6269e84cf43b8b788039c1e
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -274,22 +270,12 @@
                     translate: calc(100% + var(--_navs-container-padding));
                 }
             }
-
-            /* &:checked + .navs-container {
-                background-color: red;
-            } */
         }
-
     }
 }
 
-<<<<<<< HEAD
 @container shopping-menu (width <=405px) {
     #primary-header #selected-products>.cart-product {
-=======
-@container shopping-menu (width <= 405px) {
-    #primary-header #selected-products > li {
->>>>>>> 53ad2daa736adbc6b6269e84cf43b8b788039c1e
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
