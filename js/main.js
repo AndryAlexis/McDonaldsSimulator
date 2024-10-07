@@ -116,3 +116,13 @@ const createProductElements = (products) => Array.from(products.map(product => c
 
 const productElements = createProductElements(getData())
 addElementsIntoMain(productElements)
+
+
+/* SHOPPING CART MENU */
+// Cart Menu
+const cartMenu = document.querySelector('#shopping-menu')
+const cartTotal = cartMenu.querySelector('.total')
+let total = 0;
+
+emptyCartProductsBehavior(cartMenu, cartTotal)
+buyCartProductsBehavior(cartMenu, cartTotal)

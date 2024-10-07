@@ -1,15 +1,10 @@
-// Cart Menu
-const cartMenu = document.querySelector('#shopping-menu')
-const cartTotal = cartMenu.querySelector('.total')
-let total = 0;
-
 /**
  * Attaches an event listener to the "empty" button that clears all products from the cart
  * and resets the total price to 0.
  * 
  * @returns {void}
  */
-const emptyCartProductsBehavior = () => {
+const emptyCartProductsBehavior = (cartMenu) => {
 
     cartMenu.querySelector('button.empty').addEventListener('click', () => {
         cartMenu.querySelectorAll('.cart-product').forEach(cartProduct => cartProduct.remove())
@@ -25,7 +20,7 @@ const emptyCartProductsBehavior = () => {
  * 
  * @returns {void}
  */
-const buyCartProductsBehavior = () => {
+const buyCartProductsBehavior = (cartMenu) => {
 
     cartMenu.querySelector('button.buy').addEventListener('click', () => {
         const cartProducts = cartMenu.querySelectorAll('.cart-product')
@@ -39,9 +34,6 @@ const buyCartProductsBehavior = () => {
         }
     })
 }
-
-emptyCartProductsBehavior()
-buyCartProductsBehavior()
 
 /**
  * Handles the behavior when a button associated with a product is clicked.

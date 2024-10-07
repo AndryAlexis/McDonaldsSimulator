@@ -1,5 +1,20 @@
+/* Importing the CSS file that resets browser default styles to ensure cross-browser consistency */
 @import url(./reset.css);
+
+/* Importing a custom grid system that defines the layout structure of the website */
 @import url(./customGrid.css);
+
+/* Importing CSS variables that store commonly used values like colors, fonts, etc. */
 @import url(./variables.css);
+
+/* Importing general styles applied across the entire website (typography, spacing, etc.) */
 @import url(./general.css);
-@import url(./andry.css);
+
+/* Importing specific styles for the website's header section */
+@import url(./header.css);
+
+/* Importing specific styles for the website's main content section */
+@import url(./main.css);
+
+/* Importing specific styles for the website's footer section */
+@import url(./footer.css);
