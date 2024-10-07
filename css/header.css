@@ -270,12 +270,7 @@
                     translate: calc(100% + var(--_navs-container-padding));
                 }
             }
-
-            /* &:checked + .navs-container {
-                background-color: red;
-            } */
         }
-
     }
 }
 
