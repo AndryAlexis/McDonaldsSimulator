@@ -18,4 +18,6 @@ const products = [
   { id: 18, name: "Chocolate Shake", image: "chocolate-shake.webp", description: "Un batido cremoso de chocolate.", price: 3, stock: 18 },
   { id: 19, name: "Vanilla Cone", image: "vanilla-cone.webp", description: "Un clásico cono de helado suave de vainilla.", price: 2, stock: 35 },
   { id: 20, name: "Coca-Cola", image: "coca-cola.webp", description: "Una refrescante Coca-Cola.", price: 1, stock: 60 }
-];
+]
+
+export {products}
