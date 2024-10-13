@@ -1,122 +1,184 @@
 /**
- * Attaches an event listener to the "empty" button that clears all products from the cart
- * and resets the total price to 0.
- * 
- * @returns {void}
+ * Class representing a shopping cart menu with add-to-cart functionality.
  */
-const emptyCartProductsBehavior = (cartMenu) => {
-
-    cartMenu.querySelector('button.empty').addEventListener('click', () => {
-        cartMenu.querySelectorAll('.cart-product').forEach(cartProduct => cartProduct.remove())
-        total = 0;
-        cartTotal.textContent = `Total: ${total}€`
-    })
-}
-
-/**
- * Attaches an event listener to the "buy" button that processes the purchase of all products in the cart.
- * If the cart is not empty, it will show a confirmation alert, clear the cart, and reset the total.
- * If the cart is empty, it will display a warning message.
- * 
- * @returns {void}
- */
-const buyCartProductsBehavior = (cartMenu) => {
-
-    cartMenu.querySelector('button.buy').addEventListener('click', () => {
-        const cartProducts = cartMenu.querySelectorAll('.cart-product')
-        if (cartProducts.length) {
-            alert("Compra realizada con éxito. ¡Gracias por tu compra!")
-            cartProducts.forEach(cartProduct => cartProduct.remove())
-            total = 0;
-            cartTotal.textContent = `Total: ${total}€`
-        } else {
-            alert("Su carro está vacío")
-        }
-    })
-}
-
-/**
- * Handles the behavior when a button associated with a product is clicked.
- * It either increases the product quantity in the cart if it already exists,
- * or adds the product to the cart if it's not present.
- * 
- * @param {Object} product - The product data.
- * @param {number} product.id - The ID of the product.
- * @param {string} product.name - The name of the product.
- * @param {number} product.price - The price of the product.
- * @param {number} product.stock - The available stock for the product.
- * 
- * @returns {void}
- */
-const onClickAddToCartBehavior = (product) => {
-
-    const cartProducts = cartMenu.querySelectorAll('.cart-product')
-    let cartProduct = Array.from(cartProducts).find(cartProduct => cartProduct.dataset.id == product.id)
-    //  If not found, cartProduct is undefined
-
-    if (cartProduct) {
-        // Increase the quantity and update the total price 
-        let quantity = parseInt(cartProduct.querySelector('.quantity').textContent)
-        if (quantity < product.stock) {
-            cartProduct.querySelector('.quantity').textContent = `${++quantity}`
-            cartTotal.textContent = `Total: ${total += product.price}€`;
-        }
-    } else {
-        createNewCartProductElement(product)
+export default class ShoppingCartMenu {
+    // Constant variables for TAG, CLASS, ID, EVENT, ATTRIBUTE names
+    TAG = {
+        BUTTON: 'button',
+        ARTICLE: 'article'
     }
-}
 
-/**
- * Creates a new product element for the shopping cart and adds it to the cart menu.
- * 
- * @param {Object} product - The product data.
- * @param {number} product.id - The ID of the product.
- * @param {string} product.name - The name of the product.
- * @param {number} product.price - The price of the product.
- * @param {number} product.stock - The available stock for the product.
- * 
- * @returns {void}
- */
-const createNewCartProductElement = (product) => {
+    CLASS = {
+        QUANTITY: 'quantity',
+        MINUS: 'minus',
+        DELETE: 'delete',
+        CART_PRODUCT: 'cart-product',
+        PLUS: 'plus',
+        BUY: 'buy',
+        EMPTY: 'empty',
+        TOTAL: 'total'
+    }
 
-    let cartProduct = document.createElement('article')
-    cartProduct.classList.add('cart-product')
-    cartProduct.setAttribute('data-id', product.id)
+    ID = {
+        SELECTED_PRODUCTS: 'selected-products',
+        SHOPPING_MENU: 'shopping-menu'
+    }
 
-    cartProduct.innerHTML = `
-        <p>
-            ${product.name} - ${product.price}€ x <span class="quantity">1</span>
-        </p>
-        <div>
-            <button class="delete">Eliminar</button>
-            <button class="plus">+</button>
-            <button class="minus">-</button>
-        </div>
-    `
+    EVENT = {
+        CLICK: 'click'
+    }
 
-    cartMenu.querySelector('#selected-products').append(cartProduct)
-    cartTotal.textContent = `Total: ${total += product.price}€`;
+    ATTRIBUTE = {
+        DATA_ID: 'data-id'
+    }
 
-    // Add event listeners for delete, plus, and minus buttons
-    cartProduct.querySelector('button.delete').addEventListener('click', () => {
-        let quantity = parseInt(cartProduct.querySelector('.quantity').textContent);
-        cartProduct.remove()
-        cartTotal.textContent = `Total: ${total -= product.price * quantity}€`;
-    })
+    PRODUCTS_BY_DEFAULT = 1
 
-    cartProduct.querySelector('button.plus').addEventListener('click', () => {
-        let quantity = parseInt(cartProduct.querySelector('.quantity').textContent);
-        if (quantity < product.stock) {
-            cartProduct.querySelector('.quantity').textContent = `${++quantity}`
-            cartTotal.textContent = `Total: ${total += product.price}€`;
+    /**
+     * Constructor for the shopping cart menu.
+     * @param {string} textOfTotalCart - Text shown before the total amount.
+     * @param {string} typeofCurrency - The currency symbol.
+     * @param {string} deleteButtonText - Text for the delete button.
+     * @param {string} plusButtonText - Text for the plus button.
+     * @param {string} minusButtonText - Text for the minus button.
+     * @param {string} succesMessageText - Success message when the purchase is completed.
+     * @param {string} emptyCartMessageText - Message when the cart is empty.
+     */
+    constructor(
+        textOfTotalCart, typeofCurrency,
+        deleteButtonText, plusButtonText,
+        minusButtonText, succesMessageText,
+        emptyCartMessageText
+    ) {
+        this.textOfTotalCart = textOfTotalCart
+        this.typeofCurrency = typeofCurrency
+        this.deleteButtonText = deleteButtonText
+        this.plusButtonText = plusButtonText
+        this.minusButtonText = minusButtonText
+        this.succesMessageText = succesMessageText
+        this.emptyCartMessageText = emptyCartMessageText
+
+        this.total = 0 // Tracks the total price in the cart
+
+        this.emptyCartProductsBehavior()
+        this.buyCartProductsBehavior()
+    }
+
+    /**
+     * Adds an event listener to the empty cart button that clears the cart and resets the total.
+     */
+    emptyCartProductsBehavior() {
+        const cartMenu = document.querySelector(`#${this.ID.SHOPPING_MENU}`)
+        const cartTotal = cartMenu.querySelector(`.${this.CLASS.TOTAL}`)
+
+        cartMenu
+            .querySelector(`${this.TAG.BUTTON}.${this.CLASS.EMPTY}`)
+            .addEventListener(this.EVENT.CLICK, () => {
+                cartMenu.querySelectorAll(`.${this.CLASS.CART_PRODUCT}`).forEach(cartProduct => cartProduct.remove()) // Removes all products
+                this.total = 0; // Resets total
+                cartTotal.textContent = `${this.textOfTotalCart}${this.total}${this.typeofCurrency}` // Updates total text
+            })
+    }
+
+    /**
+     * Adds an event listener to the buy button that processes the purchase or shows an alert if the cart is empty.
+     */
+    buyCartProductsBehavior() {
+        const cartMenu = document.querySelector(`#${this.ID.SHOPPING_MENU}`)
+        const cartTotal = cartMenu.querySelector(`.${this.CLASS.TOTAL}`)
+
+        cartMenu
+            .querySelector(`${this.TAG.BUTTON}.${this.CLASS.BUY}`)
+            .addEventListener(this.EVENT.CLICK, () => {
+                const cartProducts = cartMenu.querySelectorAll(`.${this.CLASS.CART_PRODUCT}`)
+                if (cartProducts.length) {
+                    alert(this.succesMessageText) // Purchase successful message
+                    cartProducts.forEach(cartProduct => cartProduct.remove()) // Clears cart
+                    this.total = 0;
+                    cartTotal.textContent = `${this.textOfTotalCart}${this.total}${this.typeofCurrency}` // Resets total
+                } else {
+                    alert(this.emptyCartMessageText) // Shows alert when cart is empty
+                }
+            })
+    }
+
+    /**
+     * Adds a product to the cart or increments its quantity if it already exists in the cart.
+     * @param {Object} product - The product object to add.
+     */
+    onClickAddToCartBehavior = (product) => {
+        const cartMenu = document.querySelector(`#${this.ID.SHOPPING_MENU}`)
+        const cartTotal = cartMenu.querySelector(`.${this.CLASS.TOTAL}`)
+        const cartProducts = cartMenu.querySelectorAll(`.${this.CLASS.CART_PRODUCT}`)
+        let cartProduct = Array.from(cartProducts).find(cartProduct => cartProduct.dataset.id == product.id)
+
+        // If product is already in the cart, increment its quantity
+        if (cartProduct) {
+            let quantity = parseInt(cartProduct.querySelector(`.${this.CLASS.QUANTITY}`).textContent)
+            if (quantity < product.stock) {
+                cartProduct.querySelector(`.${this.CLASS.QUANTITY}`).textContent = `${++quantity}`
+                cartTotal.textContent = `${this.textOfTotalCart}${this.total += product.price}${this.typeofCurrency}`;
+            }
+        } else {
+            this.createNewCartProductElement(product) // If not, add a new product to the cart
         }
-    })
+    }
 
-    cartProduct.querySelector('button.minus').addEventListener('click', () => {
-        let quantity = parseInt(cartProduct.querySelector('.quantity').textContent);
-        if (quantity > 1) {
-            cartProduct.querySelector('.quantity').textContent = `${--quantity}`
-            cartTotal.textContent = `Total: ${total -= product.price}€`;
-        }
-    })
+    /**
+     * Creates a new product element in the cart and sets up event listeners for delete, plus, and minus buttons.
+     * @param {Object} product - The product object to create.
+     */
+    createNewCartProductElement(product) {
+        let cartProduct = document.createElement(`${this.TAG.ARTICLE}`)
+        cartProduct.classList.add(`${this.CLASS.CART_PRODUCT}`)
+        cartProduct.setAttribute(`${this.ATTRIBUTE.DATA_ID}`, product.id)
+
+        cartProduct.innerHTML = `
+            <p>
+                ${product.name} - ${product.price}${this.typeofCurrency} x <span class="${this.CLASS.QUANTITY}">${this.PRODUCTS_BY_DEFAULT}</span>
+            </p>
+            <div>
+                <button class="${this.CLASS.DELETE}">${this.deleteButtonText}</button>
+                <button class="${this.CLASS.PLUS}">${this.plusButtonText}</button>
+                <button class="${this.CLASS.MINUS}">${this.minusButtonText}</button>
+            </div>
+        `
+
+        const cartMenu = document.querySelector(`#${this.ID.SHOPPING_MENU}`)
+        const cartTotal = cartMenu.querySelector(`.${this.CLASS.TOTAL}`)
+        cartMenu.querySelector(`#${this.ID.SELECTED_PRODUCTS}`).append(cartProduct)
+
+        cartTotal.textContent = `${this.textOfTotalCart}${this.total += product.price}${this.typeofCurrency}`
+
+        // Event listener for deleting product from cart
+        cartProduct
+            .querySelector(`${this.TAG.BUTTON}.${this.CLASS.DELETE}`)
+            .addEventListener(this.EVENT.CLICK, () => {
+                let quantity = parseInt(cartProduct.querySelector(`.${this.CLASS.QUANTITY}`).textContent);
+                cartProduct.remove() // Remove product from cart
+                cartTotal.textContent = `${this.textOfTotalCart}${this.total -= product.price * quantity}${this.typeofCurrency}`; // Update total
+            })
+
+        // Event listener for increasing product quantity
+        cartProduct
+            .querySelector(`${this.TAG.BUTTON}.${this.CLASS.PLUS}`)
+            .addEventListener(this.EVENT.CLICK, () => {
+                let quantity = parseInt(cartProduct.querySelector(`.${this.CLASS.QUANTITY}`).textContent);
+                if (quantity < product.stock) {
+                    cartProduct.querySelector(`.${this.CLASS.QUANTITY}`).textContent = `${++quantity}`
+                    cartTotal.textContent = `${this.textOfTotalCart}${this.total += product.price}${this.typeofCurrency}`;
+                }
+            })
+
+        // Event listener for decreasing product quantity
+        cartProduct
+            .querySelector(`${this.TAG.BUTTON}.${this.CLASS.MINUS}`)
+            .addEventListener(this.EVENT.CLICK, () => {
+                let quantity = parseInt(cartProduct.querySelector(`.${this.CLASS.QUANTITY}`).textContent);
+                if (quantity > this.PRODUCTS_BY_DEFAULT) {
+                    cartProduct.querySelector(`.${this.CLASS.QUANTITY}`).textContent = `${--quantity}`
+                    cartTotal.textContent = `${this.textOfTotalCart}${this.total -= product.price}${this.typeofCurrency}`;
+                }
+            })
+    }
 }

@@ -20,8 +20,8 @@
     <!-- Shortcut icon (favicon) that appears on the browser tab -->
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 
-    <!-- Importing a JavaScript file that contains product data -->
-    <script src="./js/data/data.js"></script>
+    <script type="module" src="./js/data.js"></script>
+    <script type="module" src="./js/product.js"></script>
 </head>
 
 <body>
@@ -115,15 +115,8 @@
     <footer id="primary-footer">
         <p>All rights reserved.</p>
     </footer>
-
-    <!-- JavaScript file that manages the shopping cart -->
-    <script src="./js/shoppingMenu.js"></script>
-
-    <!-- JavaScript file that manages how to create elements  -->
-    <script src="./js/createElements.js"></script>
-
-    <!-- Main JavaScript file for other interactive features -->
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/shoppingMenu.js"></script>
+    <script type="module" src="./js/main.js"></script>
 </body>
 
 </html>

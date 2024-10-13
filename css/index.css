@@ -9,12 +9,6 @@
 
 /* Importing general styles applied across the entire website (typography, spacing, etc.) */
 @import url(./general.css);
-
-/* Importing specific styles for the website's header section */
 @import url(./header.css);
-
-/* Importing specific styles for the website's main content section */
 @import url(./main.css);
-
-/* Importing specific styles for the website's footer section */
 @import url(./footer.css);
