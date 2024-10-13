@@ -1,6 +1,6 @@
 import { products as data } from './data.js'  // Import product data
 import Product from './product.js'            // Import the Product class
-import ShoopingCartMenu from './shoppingMenu.js'  // Import the ShoppingCartMenu class
+import ShoppingCartMenu from './shoppingMenu.js'  // Import the ShoppingCartMenu class
 
 // Currency type used for product prices
 const TYPE_OF_CURRENCY = '€'
@@ -20,7 +20,7 @@ const product = new Product(
 )
 
 // Create an instance of the ShoppingCartMenu class
-const shoopingCartMenu = new ShoopingCartMenu(
+const shoppingCartMenu = new ShoppingCartMenu(
     'Total: ',                                       // Text displayed before the total price
     TYPE_OF_CURRENCY,                                // Currency type (Euro)
     'Eliminar',                                      // Delete button text
@@ -38,7 +38,7 @@ const main = document.querySelector('main > div.products')  // Select the main e
  */
 product.createElements(
     data,                                          // Array of product data
-    shoopingCartMenu.onClickAddToCartBehavior      // Click handler for adding products to the cart
+    shoppingCartMenu.onClickAddToCartBehavior      // Click handler for adding products to the cart
 ).forEach(
     product => main.appendChild(product)           // Append each created product element to the main element
 )

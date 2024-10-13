@@ -1,7 +1,7 @@
 /**
  * Class representing a shopping cart menu with add-to-cart functionality.
  */
-export default class ShoopingCartMenu {
+export default class ShoppingCartMenu {
     // Constant variables for TAG, CLASS, ID, EVENT, ATTRIBUTE names
     TAG = {
         BUTTON: 'button',
